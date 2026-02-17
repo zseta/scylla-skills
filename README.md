@@ -18,14 +18,14 @@ This plugin includes four specialized skills:
 ### From GitHub
 
 ```
-/plugin marketplace add rustyrazorblade/cassandra-expert
+/plugin marketplace add rustyrazorblade/skills
 /plugin install cassandra-expert@rustyrazorblade-plugins
 ```
 
 ### Local Development
 
 ```
-/plugin marketplace add ./path/to/cassandra-expert
+/plugin marketplace add ./path/to/skills
 /plugin install cassandra-expert@rustyrazorblade-plugins
 ```
 

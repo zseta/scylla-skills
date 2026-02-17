@@ -5,7 +5,7 @@
   "author": {
     "name": "Jon Haddad"
   },
-  "repository": "https://github.com/rustyrazorblade/cassandra-expert",
+  "repository": "https://github.com/rustyrazorblade/skills",
   "license": "Apache-2.0",
   "keywords": ["cassandra", "database", "nosql", "cql", "schema", "performance"],
   "category": "database"
