@@ -153,6 +153,34 @@ PRIMARY KEY ((tenant_id, entity_id), ...)
 - They can't be reliably repaired.
 - Jon **strongly** advises you do not use them.
 
+### Counters
+Counters perform a read-before-write internally, which changes their I/O characteristics significantly:
+- Set read ahead to 4KB (not the default) to avoid wasted I/O
+- Use 4KB compression chunk length to minimize read amplification
+- Expect higher latency than regular writes
+
+```sql
+CREATE TABLE page_views (
+    page_id uuid,
+    view_count counter,
+    PRIMARY KEY (page_id)
+) WITH compression = {'chunk_length_in_kb': 4};
+```
+
+### Lightweight Transactions (LWTs)
+LWTs use Paxos consensus and perform read-before-write, similar to counters:
+- Ensure `concurrent_writes` is high enough to handle LWT concurrency
+- Enable Paxos V2 (Cassandra 4.1+) to reduce round trips and improve performance (configuration, not schema)
+- Expect significantly higher latency than regular writes
+- Use sparingly - not for high-throughput paths
+
+```sql
+-- Conditional insert (IF NOT EXISTS)
+INSERT INTO users (email, name)
+VALUES ('user@example.com', 'New User')
+IF NOT EXISTS;
+```
+
 ## Schema Review Checklist
 
 When reviewing a schema, check:
