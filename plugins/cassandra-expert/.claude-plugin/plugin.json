@@ -7,6 +7,5 @@
   },
   "repository": "https://github.com/rustyrazorblade/skills",
   "license": "Apache-2.0",
-  "keywords": ["cassandra", "database", "nosql", "cql", "schema", "performance"],
-  "category": "database"
+  "keywords": ["cassandra", "database", "nosql", "cql", "schema", "performance"]
 }

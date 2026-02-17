@@ -10,7 +10,8 @@
     {
       "name": "cassandra-expert",
       "source": "./plugins/cassandra-expert",
-      "description": "Expert guidance for Apache Cassandra development and operations"
+      "description": "Expert guidance for Apache Cassandra development and operations",
+      "category": "database"
     }
   ]
 }
