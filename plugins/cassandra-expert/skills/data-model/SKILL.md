@@ -148,6 +148,11 @@ PRIMARY KEY ((tenant_id, entity_id), ...)
 - Use unlogged batches only for same-partition atomicity
 - Let the driver handle multi-partition writes
 
+### Materialized Views
+- Materialized views require careful planning, or they can completely destroy your cluster
+- They can't be reliably repaired.
+- Jon **strongly** advises you do not use them.
+
 ## Schema Review Checklist
 
 When reviewing a schema, check:
