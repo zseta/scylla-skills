@@ -1,0 +1,16 @@
+{
+  "name": "rustyrazorblade-plugins",
+  "owner": {
+    "name": "Jon Haddad"
+  },
+  "metadata": {
+    "description": "Database expertise plugins by Jon Haddad"
+  },
+  "plugins": [
+    {
+      "name": "cassandra-expert",
+      "source": "./plugins/cassandra-expert",
+      "description": "Expert guidance for Apache Cassandra development and operations"
+    }
+  ]
+}

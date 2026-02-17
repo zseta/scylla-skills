@@ -15,17 +15,18 @@ This plugin includes four specialized skills:
 
 ## Installation
 
-### From GitHub (Marketplace)
+### From GitHub
 
 ```
 /plugin marketplace add rustyrazorblade/cassandra-expert
-/plugin install cassandra-expert
+/plugin install cassandra-expert@rustyrazorblade-plugins
 ```
 
 ### Local Development
 
-```bash
-claude --plugin-dir /path/to/cassandra-expert
+```
+/plugin marketplace add ./path/to/cassandra-expert
+/plugin install cassandra-expert@rustyrazorblade-plugins
 ```
 
 ## Usage
