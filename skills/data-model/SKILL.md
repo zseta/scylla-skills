@@ -126,6 +126,7 @@ PRIMARY KEY ((tenant_id, entity_id), ...)
 - Poor performance at scale
 - Consider denormalization instead
 - SAI (5.0+) improves this but still not ideal for high cardinality
+- SAI will deliver decent performance in small clusters without a partition key in the query, but scales linearly with the total number of SSTables. **Always use a partition key** 
 
 ### Unbounded Partitions
 - Always add time bucketing for growing data
