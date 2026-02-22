@@ -2,6 +2,7 @@
 name: expert
 description: General Apache Cassandra expertise for questions, CQL analysis, best practices, and guidance. Use for general Cassandra questions that don't fit diagnose, optimize, or data-model.
 argument-hint: [question, CQL query, or topic]
+user-invocable: true
 ---
 
 # Cassandra Expert

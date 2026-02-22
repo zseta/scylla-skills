@@ -2,6 +2,7 @@
 name: optimize
 description: Performance optimization for Apache Cassandra clusters. Use when tuning configuration, improving throughput, reducing latency, or optimizing resource usage.
 argument-hint: [current config, metrics, or performance goal]
+user-invocable: true
 ---
 
 # Cassandra Performance Optimization

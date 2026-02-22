@@ -2,6 +2,7 @@
 name: data-model
 description: Data modeling and schema design for Apache Cassandra. Use when designing tables, choosing partition keys, modeling time-series data, or reviewing existing schemas.
 argument-hint: [query patterns, use case, or schema to review]
+user-invocable: true
 ---
 
 # Cassandra Data Modeling

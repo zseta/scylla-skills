@@ -2,6 +2,7 @@
 name: diagnose
 description: Systematic troubleshooting for Apache Cassandra clusters. Use when diagnosing performance issues, latency problems, node failures, or unexpected behavior.
 argument-hint: [symptom, error message, or problem description]
+user-invocable: true
 ---
 
 # Cassandra Diagnostics
