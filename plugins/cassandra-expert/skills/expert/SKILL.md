@@ -1,6 +1,6 @@
 ---
 name: expert
-description: General Apache Cassandra expertise for questions, CQL analysis, best practices, and guidance. Use for general Cassandra questions that don't fit diagnose, optimize, or data-model.
+description: General Apache Cassandra expertise for questions, CQL analysis, best practices, vnodes, and guidance. Use for general Cassandra questions that don't fit diagnose, optimize, or data-model.
 argument-hint: [question, CQL query, or topic]
 user-invocable: true
 ---
@@ -34,6 +34,20 @@ When reviewing CQL queries, check for:
 - Use sparingly - significantly slower than regular writes
 - Good for: conditional inserts, compare-and-set
 - Avoid for: high-throughput paths
+
+## Virtual Nodes (vnodes) Recommendation
+
+**Use 1 token when possible, never more than 4. This is a firm rule.**
+
+- `num_tokens: 1` - Simplest ring, best availability
+- `num_tokens: 4` - Good balance, automatic distribution
+- Higher values (16, 256) - Dangerous, creates scaling and availability problems
+
+**Warning:** The Cassandra default is 16 tokens. Jon has found this causes problems at scale. Always override to 1 or 4. The historical default of 256 was even worse.
+
+This setting cannot be changed on existing clusters without a full rebuild.
+
+For detailed guidance, read: `../../references/general/vnodes.md`
 
 ## Common Anti-Patterns
 

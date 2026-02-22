@@ -1,6 +1,6 @@
 ---
 name: optimize
-description: Performance optimization for Apache Cassandra clusters. Use when tuning configuration, improving throughput, reducing latency, or optimizing resource usage.
+description: Performance optimization for Apache Cassandra clusters. Use when tuning configuration, improving throughput, reducing latency, optimizing resource usage, or configuring vnodes/num_tokens.
 argument-hint: [current config, metrics, or performance goal]
 user-invocable: true
 ---
@@ -21,10 +21,23 @@ Disable or minimize read-ahead for Cassandra data volumes.
 
 ## cassandra.yaml Critical Settings
 
-### Token Configuration
-- `num_tokens` - 1 or max of 4. Higher is always worse.
-  - More tokens = more data movement during scaling
-  - More tokens = more overhead in token calculations
+### Token Configuration (vnodes)
+
+**Use 1 token when possible, never more than 4. This is a firm rule.**
+
+- `num_tokens: 1` - Simplest ring, best availability, fewest neighbors
+- `num_tokens: 4` - Good balance, automatic distribution, can expand ~25% smoothly
+- Higher values (16, 256) - Dangerous, creates neighbor explosion problem
+
+**Warning:** The Cassandra default is 16 tokens. Jon has found this causes problems at scale. Always override to 1 or 4.
+
+Why this matters:
+- Neighbors = (RF - 1) * 2 * num_tokens
+- With RF=3 and 256 tokens: up to 1024 neighbors per node
+- More neighbors = more nodes involved in failures, slower streaming, worse availability
+- **Cannot be changed on existing clusters without full rebuild**
+
+For detailed guidance, read: `../../references/general/vnodes.md`
 
 ### Thread Pool Sizing
 - `concurrent_reads` / `concurrent_writes` - thread pool sizing
