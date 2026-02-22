@@ -145,6 +145,13 @@ nodetool ring
 nodetool describecluster
 ```
 
+## Cassandra 5.0 References
+
+For Cassandra 5.0 specific diagnostics context:
+- `../../references/cassandra-5.0/notable-features.md` - New features that may affect behavior
+- `../../references/cassandra-5.0/jvm-options.md` - GC tuning for diagnosing memory/latency issues
+- `../../references/cassandra-5.0/cassandra-yaml.md` - Configuration that may cause issues
+
 ## Guidelines
 
 1. Start with USE method - systematically check each resource

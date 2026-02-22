@@ -75,6 +75,13 @@ When providing guidance, ask about the Cassandra version if relevant features ar
 - Schedule during low-traffic periods
 - Monitor repair progress
 
+## Cassandra 5.0 References
+
+For detailed Cassandra 5.0 guidance, read the relevant reference files:
+- `../../references/cassandra-5.0/notable-features.md` - UCS, SAI, Trie memtables, BTI format
+- `../../references/cassandra-5.0/cassandra-yaml.md` - Configuration recommendations
+- `../../references/cassandra-5.0/jvm-options.md` - JVM and GC tuning
+
 ## When to Use Specialized Skills
 
 For deeper assistance, use these specialized skills:

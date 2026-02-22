@@ -205,6 +205,11 @@ When reviewing a schema, check:
    - [ ] No ALLOW FILTERING needed?
    - [ ] Consistency requirements met?
 
+## Cassandra 5.0 References
+
+For Cassandra 5.0 specific features relevant to data modeling:
+- `../../references/cassandra-5.0/notable-features.md` - SAI guidance, UCS for compaction
+
 ## Guidelines
 
 When designing schemas:

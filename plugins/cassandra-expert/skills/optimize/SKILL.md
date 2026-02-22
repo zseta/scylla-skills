@@ -112,6 +112,13 @@ Located in `jvm.options` or `jvm11-server.options`:
 - Review recent configuration changes in change management
 - Use configuration management tools (Ansible, Chef, Puppet)
 
+## Cassandra 5.0 References
+
+For detailed Cassandra 5.0 configuration guidance, read:
+- `../../references/cassandra-5.0/notable-features.md` - UCS, Trie memtables, BTI, Zero-Copy Streaming
+- `../../references/cassandra-5.0/cassandra-yaml.md` - Full cassandra.yaml recommendations
+- `../../references/cassandra-5.0/jvm-options.md` - JVM and GC tuning (G1, Shenandoah)
+
 ## Optimization Checklist
 
 1. **System Level**
