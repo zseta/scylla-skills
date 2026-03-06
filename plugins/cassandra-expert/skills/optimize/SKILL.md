@@ -53,12 +53,11 @@ For detailed guidance, read: `../../references/general/vnodes.md`
   - Default is often reasonable, but monitor saturation
   - Increase if threads are consistently saturated with low CPU usage
 
-### Memory Configuration
-- `memtable_heap_space_in_mb` (or `memtable_heap_space`)
-- `memtable_offheap_space_in_mb` (or `memtable_offheap_space`)
-  - Off-heap delivers better performance
-  - Especially in Cassandra 5.0+ where Trie memtables are available
-  - Use `class_name: TrieMemtable` for best performance
+### Memtables
+
+**Cassandra 5.0+:** Enable Trie memtables for significantly reduced GC pressure and better write performance. Requires explicit configuration.
+
+For detailed configuration, read: `../../references/general/memtables.md`
 
 ### Compaction Settings
 - `compaction_throughput_mb_per_sec` - compaction throttling
@@ -95,24 +94,19 @@ Located in `jvm.options` or `jvm11-server.options`:
 
 ### Compaction Strategy
 
-**Cassandra 5.0+:** Jon recommends UCS (Unified Compaction Strategy) for all tables.
+**Cassandra 5.0+:** Use UCS (Unified Compaction Strategy) for all tables.
 
-**STCS should NEVER be used:**
-- Especially with 4.0+
-- Makes scaling node density far more challenging / impossible
-- See [Jon's Blog on Compaction Strategies](https://rustyrazorblade.com/post/2025/07-compaction-strategies-and-performance/)
+**Pre-5.0:** Use LCS for general workloads, TWCS for immutable time series with TTL.
 
-**Strategy Selection:**
-- UCS: Best for 5.0+, handles all workloads well
-- LCS: Good for read-heavy workloads (pre-5.0)
-- TWCS: Time-series data with TTL
+**STCS should never be used** on modern systems - it creates unmanageable SSTable sizes and prevents efficient streaming.
+
+For detailed strategy selection, migration examples, and tuning, read: `../../references/general/compaction.md`
 
 ### Compression Settings
-- Older versions used 64KB `chunk_length_in_kb`
-- This leads to terrible performance
-- Larger chunk length means decoding more data on each read
-- Data is rarely sent back entirely - wasted CPU and disk I/O causing early saturation
-- Consider smaller chunk sizes for read-heavy workloads
+
+Tables created in older Cassandra versions may still use the old 64KB chunk default, which causes poor read performance. For read-heavy workloads, 4KB chunks can provide significant throughput and latency improvements at the cost of higher off-heap memory usage.
+
+For detailed chunk size tuning and algorithm selection, read: `../../references/general/compression.md`
 
 ### Other Table Settings
 - `bloom_filter_fp_chance` - lower = more memory, fewer false positives
@@ -135,9 +129,14 @@ Located in `jvm.options` or `jvm11-server.options`:
 - Review recent configuration changes in change management
 - Use configuration management tools (Ansible, Chef, Puppet)
 
-## Cassandra 5.0 References
+## References
 
-For detailed Cassandra 5.0 configuration guidance, read:
+For detailed guidance, read the relevant reference files:
+- `../../references/general/vnodes.md` - Why 1-4 tokens only
+- `../../references/general/compaction.md` - Strategy selection and UCS migration
+- `../../references/general/compression.md` - Chunk size tuning and algorithm selection
+- `../../references/general/memtables.md` - Trie memtables configuration
+- `../../references/general/streaming.md` - Streaming performance optimization
 - `../../references/cassandra-5.0/notable-features.md` - UCS, Trie memtables, BTI, Zero-Copy Streaming
 - `../../references/cassandra-5.0/cassandra-yaml.md` - Full cassandra.yaml recommendations
 - `../../references/cassandra-5.0/jvm-options.md` - JVM and GC tuning (G1, Shenandoah)

@@ -119,6 +119,22 @@ When diagnosing issues, always compare nodes to identify outliers:
 - Look for memory leaks in native memory
 - Verify JVM settings match workload
 
+### Streaming Performance Issues
+
+Slow streaming during bootstrap, decommission, or repair.
+
+**Symptoms:**
+- Bootstrap/decommission taking hours instead of minutes
+- Throughput ~12MB/s instead of disk/network speeds
+
+**Quick checks:**
+- `nodetool netstats` - monitor streaming progress
+- `nodetool ring` - check vnode count (should be 1-4)
+
+**Common causes:** High vnode count, STCS/TWCS compaction, internode encryption.
+
+For detailed diagnostics, read: `../../references/general/streaming.md`
+
 ## Diagnostic Commands
 
 ```bash
@@ -146,9 +162,12 @@ nodetool ring
 nodetool describecluster
 ```
 
-## Cassandra 5.0 References
+## References
 
-For Cassandra 5.0 specific diagnostics context:
+For detailed diagnostics context:
+- `../../references/general/streaming.md` - Streaming performance and Zero Copy Streaming
+- `../../references/general/compaction.md` - Compaction strategy issues and tuning
+- `../../references/general/repair.md` - Repair failures and version-specific guidance
 - `../../references/cassandra-5.0/notable-features.md` - New features that may affect behavior
 - `../../references/cassandra-5.0/jvm-options.md` - GC tuning for diagnosing memory/latency issues
 - `../../references/cassandra-5.0/cassandra-yaml.md` - Configuration that may cause issues

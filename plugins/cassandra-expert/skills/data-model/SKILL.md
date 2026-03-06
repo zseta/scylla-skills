@@ -46,25 +46,14 @@ Jon's recommendation is to stay under 10MB per partition:
 
 ## Time-Series Data Modeling
 
-**Pattern: Table per time period, partition per day**
+**Key principles:**
+- Use table-per-time-window pattern (monthly/yearly tables) for easy lifecycle management
+- Add time bucket to partition key to bound partition size
+- Use `timeuuid` for timestamps (ordering + uniqueness)
+- Avoid explicit DELETEs - use TTL or table drops instead
+- Low `gc_grace_seconds` (e.g., 60) is safe for immutable time series
 
-```sql
-CREATE TABLE events_2024_01 (
-    sensor_id uuid,
-    event_date date,
-    event_time timestamp,
-    value double,
-    PRIMARY KEY ((sensor_id, event_date), event_time)
-) WITH CLUSTERING ORDER BY (event_time DESC);
-```
-
-**Key Strategies:**
-- Table per month/year for easy data lifecycle management
-- Partition per day to bound partition size
-- Clustering by time for efficient range queries
-- TTL for automatic data expiration
-
-Reference: [Time Series for Massive Scale](https://www.youtube.com/watch?v=Ysfi3V2KQtU)
+For detailed patterns, bucketing strategies, and compaction configuration, read: `../../references/general/time-series.md`
 
 ## Common Patterns
 
@@ -206,9 +195,11 @@ When reviewing a schema, check:
    - [ ] No ALLOW FILTERING needed?
    - [ ] Consistency requirements met?
 
-## Cassandra 5.0 References
+## References
 
-For Cassandra 5.0 specific features relevant to data modeling:
+For detailed guidance:
+- `../../references/general/time-series.md` - Time series patterns, bucketing, compaction
+- `../../references/general/compression.md` - Chunk size tuning (important for counters)
 - `../../references/cassandra-5.0/notable-features.md` - SAI guidance, UCS for compaction
 
 ## Guidelines

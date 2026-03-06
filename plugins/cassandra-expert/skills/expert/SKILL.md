@@ -94,14 +94,19 @@ When providing guidance, ask about the Cassandra version if relevant features ar
 - **Cleanup**: Removing data after topology changes
 
 ### Repair Best Practices
-- Run regularly (within gc_grace_seconds)
-- Use incremental repair when possible
-- Schedule during low-traffic periods
-- Monitor repair progress
+- Run regularly (must complete within gc_grace_seconds)
+- **4.0+:** Use incremental repair - it's safe and efficient
+- **Pre-4.0:** Use subrange repair only (never incremental)
+- Automate with Reaper or similar tools
 
-## Cassandra 5.0 References
+For detailed repair guidance, read: `../../references/general/repair.md`
 
-For detailed Cassandra 5.0 guidance, read the relevant reference files:
+## References
+
+For detailed guidance, read the relevant reference files:
+- `../../references/general/vnodes.md` - Why 1-4 tokens only
+- `../../references/general/compaction.md` - Strategy selection and UCS migration
+- `../../references/general/repair.md` - Incremental vs subrange, version guidance
 - `../../references/cassandra-5.0/notable-features.md` - UCS, SAI, Trie memtables, BTI format
 - `../../references/cassandra-5.0/cassandra-yaml.md` - Configuration recommendations
 - `../../references/cassandra-5.0/jvm-options.md` - JVM and GC tuning
