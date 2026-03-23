@@ -1,6 +1,7 @@
-# Rustyrazorblade Skills
+# ScyllaDB Skills
 
-A Claude Code plugin marketplace by Jon Haddad.
+> This project is based on the [rustyrazorblade/skills](https://github.com/rustyrazorblade/skills) repository.
+
 
 ## Installation
 
