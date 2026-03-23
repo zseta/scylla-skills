@@ -1,6 +1,6 @@
 # ScyllaDB Skills
 
-> This project is based on the [rustyrazorblade/skills](https://github.com/rustyrazorblade/skills) repository.
+> This project is based on the [rustyrazorblade/skills](https://github.com/rustyrazorblade/skills) repository and is currently under development
 
 
 ## Installation
